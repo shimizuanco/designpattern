@@ -1,5 +1,5 @@
 package designpattern;
 
-public class Book {
+public record Book(String name) {
 
 }
