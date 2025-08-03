@@ -7,6 +7,7 @@ public class Main {
 		bookShelf.appendBook(new Book("吾輩は猫である"));
 		bookShelf.appendBook(new Book("吾輩も猫である"));
 		bookShelf.appendBook(new Book("吾輩は犬である"));
+		bookShelf.appendBook(new Book("吾輩も犬である"));
 		
 		for(Book book : bookShelf) {
 			String name = book.name();
