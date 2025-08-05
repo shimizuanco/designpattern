@@ -8,38 +8,42 @@ import com.hakotrain.designpattern.iterator.Book;
 
 class BookTest {
 
-	// 正常系　コンストラクタで名前として１文字以上の文字列を設定できる
+	// 正常系　コンストラクタで名前(name)として１文字以上の文字列を設定できる
 	@Test
-	void constractorNormalTest() {
+	void constructorNameHasMoreThan0CharsTest() {
 		String expected = "吾輩は猫である";
 		Book book = new Book(expected);
 		String actual = book.name();
-		
 		assertEquals(expected, actual);
 	}
 	
-	// 正常系　コンストラクタで名前として空文字列を設定できる
+	// 異常系　コンストラクタで名前(name)として空文字列は設定できない
 	@Test
-	void constractorNullStringTest() {
-		Book book = new Book("");
-		String actual = book.name();
-		String expected = "";
+	void constractorNameHasNoCharTest() {
+		// 例外が発生することを確認する
+		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book("");});
 		
+		// 例外オブジェクトに格納したmessageを確認する
+		String expected = "Bookの名前(name)に空文字列は指定できません";
+		String actual = e.getMessage();
 		assertEquals(expected, actual);
 	}
 	
-	// 正常系　コンストラクタで名前としてnullは設定できない
+	// 異常系　コンストラクタで名前(name)としてnullは設定できない
 	@Test
-	void constractorNullTest() {
-		Book book = new Book(null);
-		String actual = book.name();
+	void constractorNameIsNullTest() {
+		// 例外が発生することを確認する
+		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book(null);});
 		
-		assertNull(actual, "Bookコンストラクタの引数がnullです");
+		// 例外オブジェクトに格納したmessageを確認する
+		String expected = "Bookの名前(name)にnullは指定できません";
+		String actual = e.getMessage();
+		assertEquals(expected, actual);
 	}
 
-	
+	// 正常系　設定した名前を取り出せる
 	@Test
-	void constractorNullTest1() {
+	void nameTest() {
 		
 	}
 
