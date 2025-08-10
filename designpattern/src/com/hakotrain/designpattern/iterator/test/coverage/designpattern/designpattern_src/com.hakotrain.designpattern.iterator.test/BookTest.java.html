@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BookTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BookTest (1) (2025/08/06 16:18:32)</a> &gt; <a href="../../index.html" class="el_group">designpattern</a> &gt; <a href="../index.html" class="el_bundle">designpattern/src</a> &gt; <a href="index.source.html" class="el_package">com.hakotrain.designpattern.iterator.test</a> &gt; <span class="el_source">BookTest.java</span></div><h1>BookTest.java</h1><pre class="source lang-java linenums">package com.hakotrain.designpattern.iterator.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.hakotrain.designpattern.iterator.Book;
+
+<span class="fc" id="L9">class BookTest {</span>
+
+	// 正常系　コンストラクタで名前(name)として１文字以上の文字列を設定しオブジェクトが生成できる
+	@Test
+	void constructorNameHasGE1CharsTest01() {
+<span class="fc" id="L14">		String expected = &quot;com.hakotrain.designpattern.iterator.Book&quot;;</span>
+		
+<span class="fc" id="L16">		String name = &quot;吾輩は猫である&quot;;</span>
+<span class="fc" id="L17">		Book book = new Book(name);</span>
+<span class="fc" id="L18">		String actual = book.getClass().getName();</span>
+		
+<span class="fc" id="L20">		assertEquals(expected, actual);</span>
+<span class="fc" id="L21">	}</span>
+	
+	// 正常系　設定した名前を取り出せる
+	@Test
+	void nameTest02() {
+<span class="fc" id="L26">		String expected = &quot;吾輩は猫である&quot;;</span>
+<span class="fc" id="L27">		Book book = new Book(expected);</span>
+<span class="fc" id="L28">		String actual = book.name();</span>
+		
+<span class="fc" id="L30">		assertEquals(expected, actual);</span>
+		
+<span class="fc" id="L32">	}</span>
+
+	// 異常系　コンストラクタで名前(name)として空文字列は設定できない
+	@Test
+	void constractorNameHasNoCharTest03() {
+		// 例外が発生することを確認する
+<span class="pc" id="L38">		Throwable e = assertThrows(IllegalArgumentException.class, () -&gt;{new Book(&quot;&quot;);});</span>
+		
+		// 例外オブジェクトに格納したmessageを確認する
+<span class="fc" id="L41">		String expected = &quot;Bookの名前(name)に空文字列は指定できません&quot;;</span>
+<span class="fc" id="L42">		String actual = e.getMessage();</span>
+<span class="fc" id="L43">		assertEquals(expected, actual);</span>
+<span class="fc" id="L44">	}</span>
+	
+	// 異常系　コンストラクタで名前(name)としてnullは設定できない
+	@Test
+	void constractorNameIsNullTest04() {
+		// 例外が発生することを確認する
+<span class="pc" id="L50">		Throwable e = assertThrows(IllegalArgumentException.class, () -&gt;{new Book(null);});</span>
+		
+		// 例外オブジェクトに格納したmessageを確認する
+<span class="fc" id="L53">		String expected = &quot;Bookの名前(name)にnullは指定できません&quot;;</span>
+<span class="fc" id="L54">		String actual = e.getMessage();</span>
+<span class="fc" id="L55">		assertEquals(expected, actual);</span>
+<span class="fc" id="L56">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>BookTest (1) (2025/08/06 16:18:32)</div></body></html>

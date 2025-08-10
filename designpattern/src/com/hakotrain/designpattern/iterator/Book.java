@@ -3,10 +3,20 @@ package com.hakotrain.designpattern.iterator;
 public record Book(String name) {
 	
 	public Book {
+		boolean isIllegalArg = false;
+		
+		// nameにnullは設定できない
 		if(name == null) {
-			throw new IllegalArgumentException("Bookの名前(name)にnullは指定できません");
-		} else if( name.length() < 1) {
-			throw new IllegalArgumentException("Bookの名前(name)に空文字列は指定できません");
+			isIllegalArg = true;
+		}
+		
+		// nameに空文字列は設定できない
+		if(name != null && "".equals(name)) {
+			isIllegalArg = true;
+		}
+		
+		if(isIllegalArg) {
+			throw new IllegalArgumentException("Bookの名前(name)に「" + name + "」は指定できません");
 		}
 	}
 }

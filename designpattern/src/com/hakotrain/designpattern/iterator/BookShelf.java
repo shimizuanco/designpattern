@@ -8,6 +8,9 @@ public class BookShelf implements Iterable<Book> {
 	private int last;
 	
 	public BookShelf(int maxSize) {
+		if(maxSize < 1) {
+			throw new IllegalArgu
+		}
 		books = new Book[maxSize];
 		last = 0;
 	}
