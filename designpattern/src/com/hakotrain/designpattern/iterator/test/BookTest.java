@@ -16,7 +16,7 @@ class BookTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"w", "吾輩は猫である"})
 	@DisplayName("正常系　コンストラクタ　引数(name)に１文字以上の文字列を設定し、Bookオブジェクトが生成できること")
-	void constructorNameNormalTest(String candidate) {
+	void testConstructorNameNormal(String candidate) {
 		String expected = "com.hakotrain.designpattern.iterator.Book";
 		
 		Book book = new Book(candidate);
@@ -30,7 +30,7 @@ class BookTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"w", "吾輩は猫である"})
 	@DisplayName("正常系　name()　Bookに設定した名前を取り出せること")
-	void nameNormalTest(String candidate) {
+	void testNameNormal(String candidate) {
 		String expected = candidate;
 		
 		Book book = new Book(expected);
@@ -46,7 +46,7 @@ class BookTest {
 	@NullSource
 	@ValueSource(strings = {""})
 	@DisplayName("異常系　コンストラクタ　引数(name)にnullまたは空文字列を設定すると例外が発生する")
-	void constractorNameIllegalTest(String candidate) {
+	void testConstractorNameIllegal(String candidate) {
 		// 例外が発生することを確認する
 		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book(candidate);});
 		
@@ -60,7 +60,7 @@ class BookTest {
 	// （参考）正常系　コンストラクタ　Bookオブジェクトが生成できること
 	@Test
 	@DisplayName("（参考）正常系　コンストラクタ　引数(name)に１文字の文字列を設定し、Bookオブジェクトが生成できること")
-	void constructorNameHasEq1CharTest() {
+	void testConstructorNameHasEq1Char() {
 		String expected = "com.hakotrain.designpattern.iterator.Book";
 		
 		String name = "w";
@@ -73,7 +73,7 @@ class BookTest {
 	// （参考）正常系　コンストラクタ　引数(name)に２文字以上の文字列を設定し、Bookオブジェクトが生成できること
 	@Test
 	@DisplayName("（参考）正常系　コンストラクタ　引数(name)に２文字以上の文字列を設定し、Bookオブジェクトが生成できること")
-	void constructorNameHasGE2CharsTest() {
+	void testConstructorNameHasGE2Chars() {
 		String expected = "com.hakotrain.designpattern.iterator.Book";
 		
 		String name = "吾輩は猫である";
@@ -86,7 +86,7 @@ class BookTest {
 	// （参考）正常系　name()　設定した１文字の名前を取り出せること
 	@Test
 	@DisplayName("（参考）正常系　name()　設定した１文字の名前を取り出せること")
-	void nameHasEq1CharsTest() {
+	void testNameHasEq1Chars() {
 		String expected = "w";
 		
 		Book book = new Book(expected);
@@ -99,7 +99,7 @@ class BookTest {
 	// （参考）正常系　name()　設定した２文字以上の名前を取り出せること
 	@Test
 	@DisplayName("（参考）正常系　name()　設定した２文字以上の名前を取り出せること")
-	void nameHasGE2CharsTest() {
+	void testNameHasGE2Chars() {
 		String expected = "吾輩は猫である";
 		
 		Book book = new Book(expected);
@@ -112,7 +112,7 @@ class BookTest {
 	// （参考）異常系　コンストラクタ　引数(name)に空文字列を設定すると例外が発生する
 	@Test
 	@DisplayName("（参考）異常系　コンストラクタ　引数(name)に空文字列を設定すると例外が発生する")
-	void constractorNameHasNoCharTest() {
+	void testConstractorNameHasNoChar() {
 		// 例外が発生することを確認する
 		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book("");});
 		
@@ -125,7 +125,7 @@ class BookTest {
 	// （参考）異常系　コンストラクタ　引数(name)にnullを設定すると例外が発生する
 	@Test
 	@DisplayName("（参考）異常系　コンストラクタ　引数(name)にnullを設定すると例外が発生する")
-	void constractorNameIsNullTest() {
+	void testConstractorNameIsNull() {
 		// 例外が発生することを確認する
 		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book(null);});
 		
