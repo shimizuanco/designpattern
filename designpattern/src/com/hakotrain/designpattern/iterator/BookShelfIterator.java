@@ -16,6 +16,11 @@ public class BookShelfIterator implements Iterator<Book> {
 	
 	@Override
 	public Book next() {
+		// 次のBookオブジェクトが存在すること
+		if(!hasNext()) {
+			throw new IllegalStateException("次のBookオブジェクトは存在しません");
+		}
+		
 		return bookShelf.getBookAt(index++);
 	}
 	
