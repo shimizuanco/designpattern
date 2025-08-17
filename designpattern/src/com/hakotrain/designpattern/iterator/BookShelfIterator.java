@@ -10,6 +10,10 @@ public class BookShelfIterator implements Iterator<Book> {
 	private int index;
 	
 	public BookShelfIterator(BookShelf bookShelf) {
+		if(bookShelf == null) {
+			throw new IllegalArgumentException("引数で渡されたBookShelfオブジェクトがnullです");
+		}
+		
 		this.bookShelf = bookShelf;
 		index = 0;
 	}
