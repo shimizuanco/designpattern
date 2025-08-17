@@ -70,6 +70,24 @@ class BookShelfTest {
 		assertEquals(candidate, bookShelf.getLast());
 	}
 
+	// 異常系　appendBook()　BookShelfオブジェクトにBookを最大数を超えて格納すると例外が発生すること
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 5 })
+	void test220_appendBookAbnormal(int candidate) {
+		BookShelf bookShelf = new BookShelf(candidate);
+		int maxSize = bookShelf.getMaxSize();
+
+		// BookShelfオブジェクトにBookオブジェクトを追加する
+		for (int i = 0; i < maxSize; i++) {
+			bookShelf.appendBook(new Book(String.valueOf(i)));
+		}
+		
+		// appendBook() : さらにBookオブジェクトを追加すると例外が発生すること
+		Throwable e = assertThrows(IllegalStateException.class, () -> {
+			bookShelf.appendBook(new Book(String.valueOf(candidate)));
+		});
+	}
+
 
 	// CsvSource
 
