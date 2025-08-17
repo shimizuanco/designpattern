@@ -39,7 +39,7 @@ public class BookShelf implements Iterable<Book> {
 		
 		// 管理する本の数が配列のサイズを超えないこと
 		if(last >= books.length) {
-			throw new IllegalArgumentException("本の数が上限を超えました" );
+			throw new IllegalStateException("本の数が上限を超えました" );
 		}
 
 		books[last] = book;
