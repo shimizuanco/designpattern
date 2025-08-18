@@ -3,20 +3,21 @@ package com.hakotrain.designpattern.iterator.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.hakotrain.designpattern.iterator.Book;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class BookTest {
-	
 	// 正常系　コンストラクタ　引数(name)に１文字以上の文字列を設定し、Bookオブジェクトが生成できること
 	@ParameterizedTest
 	@ValueSource(strings = {"w", "吾輩は猫である"})
-	@DisplayName("正常系　コンストラクタ　引数(name)に１文字以上の文字列を設定し、Bookオブジェクトが生成できること")
-	void testConstructorNameNormal(String candidate) {
+	void test010_ConstructorNameNormal(String candidate) {
 		String expected = "com.hakotrain.designpattern.iterator.Book";
 		
 		Book book = new Book(candidate);
@@ -29,8 +30,7 @@ class BookTest {
 	// 正常系　name()　設定した名前を取り出せること
 	@ParameterizedTest
 	@ValueSource(strings = {"w", "吾輩は猫である"})
-	@DisplayName("正常系　name()　Bookに設定した名前を取り出せること")
-	void testNameNormal(String candidate) {
+	void test011_NameNormal(String candidate) {
 		String expected = candidate;
 		
 		Book book = new Book(expected);
@@ -45,8 +45,7 @@ class BookTest {
 	@ParameterizedTest
 	@NullSource
 	@ValueSource(strings = {""})
-	@DisplayName("異常系　コンストラクタ　引数(name)にnullまたは空文字列を設定すると例外が発生する")
-	void testConstractorNameIllegal(String candidate) {
+	void test020_ConstractorNameIllegal(String candidate) {
 		// 例外が発生することを確認する
 		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new Book(candidate);});
 		
@@ -55,6 +54,7 @@ class BookTest {
 		String actual = e.getMessage();
 		assertEquals(expected, actual);
 	}
+
 
 	
 	// （参考）正常系　コンストラクタ　Bookオブジェクトが生成できること
