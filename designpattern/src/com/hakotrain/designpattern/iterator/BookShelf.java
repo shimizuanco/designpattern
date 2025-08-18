@@ -9,7 +9,7 @@ public class BookShelf implements Iterable<Book> {
 	public BookShelf(int maxSize) {
 		// BookShelfで管理できる本の数は、1以上であること
 		if(maxSize < 1) {
-			throw new IllegalArgumentException("BookShelfの最大サイズは、1以上を指定してください");
+			throw new IllegalArgumentException("BookShelfの引数(maxSize)に「" + maxSize + "」は指定できません");
 		}
 		
 		books = new Book[maxSize];
