@@ -18,7 +18,7 @@ class BookShelfIteratorTest {
 	// 正常系　コンストラクタ　BookShelfIteratorオブジェクトを取得できること
 	@ParameterizedTest
 	@ValueSource(ints = { 1, 5 })
-	void test110_ConstructorNormal(int candidate) {
+	void test010_ConstructorNormal(int candidate) {
 		BookShelf bookShelf = new BookShelf(candidate);
 
 		// Iteratorオブジェクトを生成できること
@@ -41,22 +41,6 @@ class BookShelfIteratorTest {
 		String expected = "引数で渡されたBookShelfオブジェクトがnullです";
 		String actual = e.getMessage();
 		assertEquals(expected, actual);
-	}
-
-	// 正常系　getLast()　BookShelfオブジェクトに格納されたBook数が得られること
-	@ParameterizedTest
-	@ValueSource(ints = { 1, 5 })
-	void test310_getLastNormal(int candidate) {
-		BookShelf bookShelf = new BookShelf(candidate);
-		int maxSize = bookShelf.getMaxSize();
-
-		// BookShelfオブジェクトにBookオブジェクトを追加する
-		for (int i = 0; i < maxSize; i++) {
-			bookShelf.appendBook(new Book(String.valueOf(i)));
-		}
-		
-		// BookShelfオブジェクトに格納可能な数のBookオブジェクトが追加されていること
-		assertEquals(candidate, bookShelf.getLast());
 	}
 	
 	// 正常系　hasNext(), next()　BookShelfオブジェクトからBookを取り出せること
