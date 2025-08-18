@@ -32,6 +32,19 @@ class BookShelfTest {
 		String expected = "com.hakotrain.designpattern.iterator.BookShelf";
 		assertEquals(expected, bookShelf.getClass().getName());
 	}
+	
+	// 異常系　コンストラクタ　引数(maxSize)に仕様外の値（null,空文字列）を設定すると例外が発生する
+	@ParameterizedTest
+	@ValueSource(ints = {-1, 0})
+	void test020_ConstractorAbnomal(int candidate) {
+		// 例外が発生することを確認する
+		Throwable e = assertThrows(IllegalArgumentException.class, () ->{new BookShelf(candidate);});
+		
+		// 例外オブジェクトに格納したmessageを確認する
+		String expected = "BookShelfの引数(maxSize)に「" + candidate + "」は指定できません";
+		String actual = e.getMessage();
+		assertEquals(expected, actual);
+	}
 
 
 	// 正常系　getLast()　BookShelfオブジェクトを生成した直後は、maxSizeに依らず、0が返されること
@@ -42,6 +55,22 @@ class BookShelfTest {
 
 		// getLast() : BookShelf生成時は、lastは0になっていること
 		assertEquals(0, bookShelf.getLast());
+	}
+
+	// 正常系　getLast()　BookShelfオブジェクトに格納されたBook数が得られること
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 5 })
+	void test111_getLastNormal(int candidate) {
+		BookShelf bookShelf = new BookShelf(candidate);
+		int maxSize = bookShelf.getMaxSize();
+
+		// BookShelfオブジェクトにBookオブジェクトを追加する
+		for (int i = 0; i < maxSize; i++) {
+			bookShelf.appendBook(new Book(String.valueOf(i)));
+		}
+		
+		// BookShelfオブジェクトに格納可能な数のBookオブジェクトが追加されていること
+		assertEquals(candidate, bookShelf.getLast());
 	}
 
 	// 正常系　getMaxSize()　BookShelfオブジェクトのmaxSizeを正しく取得できること
