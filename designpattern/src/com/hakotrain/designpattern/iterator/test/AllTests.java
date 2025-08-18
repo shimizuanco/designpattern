@@ -4,7 +4,7 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
 @Suite
-@SelectClasses({ BookShelfIteratorTest.class, BookShelfTest.class, BookTest.class })
+@SelectClasses({ BookTest.class, BookShelfTest.class, BookShelfIteratorTest.class })
 public class AllTests {
 
 }
