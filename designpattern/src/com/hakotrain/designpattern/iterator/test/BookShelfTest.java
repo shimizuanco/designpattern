@@ -86,7 +86,7 @@ class BookShelfTest {
 	// 正常系　appendBook()　BookShelfオブジェクトにBookを最大数まで格納できること
 	@ParameterizedTest
 	@ValueSource(ints = { 1, 5 })
-	void test210_appendBookNormal(int candidate) {
+	void test310_appendBookNormal(int candidate) {
 		BookShelf bookShelf = new BookShelf(candidate);
 		int maxSize = bookShelf.getMaxSize();
 
@@ -102,7 +102,7 @@ class BookShelfTest {
 	// 異常系　appendBook()　BookShelfオブジェクトにBookを最大数を超えて格納すると例外が発生すること
 	@ParameterizedTest
 	@ValueSource(ints = { 1, 5 })
-	void test220_appendBookAbnormal(int candidate) {
+	void test320_appendBookAbnormal(int candidate) {
 		BookShelf bookShelf = new BookShelf(candidate);
 		int maxSize = bookShelf.getMaxSize();
 
@@ -112,10 +112,47 @@ class BookShelfTest {
 		}
 		
 		// appendBook() : さらにBookオブジェクトを追加すると例外が発生すること
-		Throwable e = assertThrows(IllegalStateException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			bookShelf.appendBook(new Book(String.valueOf(candidate)));
 		});
 	}
+	
+	// 正常系　getBookAt()　指定したindex値のBookオブジェクトを取り出せること
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 5 })
+	void test410_getBookAtnormal(int candidate) {
+		BookShelf bookShelf = new BookShelf(candidate);
+		int maxSize = bookShelf.getMaxSize();
+
+		// BookShelfオブジェクトにBookオブジェクトを追加する
+		for (int i = 0; i < maxSize; i++) {
+			bookShelf.appendBook(new Book(String.valueOf(i)));
+		}
+
+		// BookShelfオブジェクトからBookオブジェクトを取り出す
+		for (int i = 0; i < bookShelf.getLast(); i++) {
+			assertEquals(i, Integer.parseInt(bookShelf.getBookAt(i).name()));
+		}
+	}
+
+	// 異常系　getBookAt()　引数値が0または格納したBookオブジェクト数以上では、例外が発生すること
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 5 })
+	void test420_getBookAtAbnormal(int candidate) {
+		BookShelf bookShelf = new BookShelf(candidate);
+
+		// BookShelfオブジェクトにBookオブジェクトを追加する
+		for (int i = 0; i < candidate; i++) {
+			bookShelf.appendBook(new Book(String.valueOf(i)));
+		}
+		
+		// 例外が発生すること
+		assertThrows(IllegalStateException.class, () -> {
+			
+			bookShelf.appendBook(new Book(String.valueOf(candidate)));
+		});
+	}
+
 
 
 	// CsvSource
