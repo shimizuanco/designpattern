@@ -1,6 +1,6 @@
 package com.hakotrain.designpattern.nest.test;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Nested;
@@ -10,32 +10,46 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class NestedTest {
 
-	private String normalTest = "Class01";
-	
-	@BeforeAll
-	void beforeAll() {
-		System.out.println("NestedTest # setupAll()");
-		normalTest += " beforeAll()";
-	}
-	
+	static private String normalTest = "NestedTest";
+
+//	@BeforeAll
+//	void beforeAll() {
+//		normalTest += " NestedTest-beforeAll()";
+//		System.out.println(normalTest);
+//	}
+
 	@BeforeEach
 	void beforeEach() {
-		normalTest += " beforeEach()";
+		normalTest += " NestedTest-beforeEach()\n";
+	}
 
-	}
-	
 	@Test
-	void testClass1Normal() {
-		normalTest += " testClass1Normal()";		
+	void testNestedTestNormal1() {
+		normalTest += " testNestedTestNormal1()\n";
 	}
-	
+
 	@Nested
 	class NormalTest {
-		void testClass2Normal() {
-			System.out.println("NormalTest # testNormal()");
-			normalTest += " testClass2Normal()";
+//		@BeforeAll
+//		void beforeAll() {
+//			normalTest += " NormalTest-beforeAlll()";
+//		}
+
+		void testNestedTestNormal1() {
+			normalTest += " testNormalTestNormal1()\n";
 		}
 
+		@AfterAll
+		static void afterAll() {
+			normalTest += " NormalTest-afterAll()\n";
+			System.out.println(normalTest);
+		}
+	}
+
+	@AfterAll
+	static void afterAll() {
+		normalTest += " NestTest-afterAll()\n";
+		System.out.println(normalTest);
 	}
 
 }
