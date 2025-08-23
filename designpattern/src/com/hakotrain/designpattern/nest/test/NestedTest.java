@@ -1,6 +1,7 @@
 package com.hakotrain.designpattern.nest.test;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Nested;
@@ -10,46 +11,56 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class NestedTest {
 
-	static private String normalTest = "NestedTest";
+	static String varNestedTest = "varNestedTest ";
 
-//	@BeforeAll
-//	void beforeAll() {
-//		normalTest += " NestedTest-beforeAll()";
-//		System.out.println(normalTest);
-//	}
+	@BeforeAll
+	static void beforeAll() {
+		varNestedTest += "NestedTest-beforeAll() ";
+//		System.out.println(varNestedTest);
+	}
 
 	@BeforeEach
 	void beforeEach() {
-		normalTest += " NestedTest-beforeEach()\n";
+		varNestedTest += "NestedTest-beforeEach() ";
 	}
 
 	@Test
 	void testNestedTestNormal1() {
-		normalTest += " testNestedTestNormal1()\n";
+		varNestedTest += "testNestedTestNormal1() ";
+		NormalTest nt = new NormalTest();
+		nt.testNestedTestNormal1();
 	}
 
 	@Nested
 	class NormalTest {
-//		@BeforeAll
-//		void beforeAll() {
-//			normalTest += " NormalTest-beforeAlll()";
-//		}
+		
+		static String varNormalTest = "varNormalTest ";
+		
+		@BeforeAll
+		static void beforeAll() {
+			varNestedTest += "NormalTest-beforeAlll() ";
+			varNormalTest += "NormalTest-beforeAlll() ";
+//			System.out.println(varNestedTest);
+		}
 
 		void testNestedTestNormal1() {
-			normalTest += " testNormalTestNormal1()\n";
+			varNestedTest += "NormalTest-testNestedTestNormal1() ";
+			varNormalTest += "NormalTest-testNestedTestNormal1() ";
+			System.out.println(varNormalTest);
 		}
 
 		@AfterAll
 		static void afterAll() {
-			normalTest += " NormalTest-afterAll()\n";
-			System.out.println(normalTest);
+			varNestedTest += "NormalTest-afterAll() ";
+			varNormalTest += "NormalTest-afterAll() ";
+			System.out.println(varNormalTest);
 		}
 	}
 
 	@AfterAll
 	static void afterAll() {
-		normalTest += " NestTest-afterAll()\n";
-		System.out.println(normalTest);
+		varNestedTest += "NestedTest-afterAll() ";
+		System.out.println(varNestedTest);
 	}
 
 }
