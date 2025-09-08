@@ -10,6 +10,12 @@ public class IDCardFactory extends Factory {
 		Product product = new IDCard(name);
 		return product;
 	}
+	
+	@Override
+	protected Product createProduct(Class<?> clazz, String name) throws Exception {
+		Product product = (Product) clazz.getDeclaredConstructor(String.class).newInstance(name);
+		return product;
+	}
 
 	@Override
 	protected void registerProduct(String name) {

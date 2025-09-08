@@ -9,12 +9,11 @@ public abstract class Product {
 	}
 	
 	public abstract void use();
+	
 	/**
 	 * @return the owner
 	 */
 	public String getOwner() {
 		return owner;
 	}
-	
-	
 }
