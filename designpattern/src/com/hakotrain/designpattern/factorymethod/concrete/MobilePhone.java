@@ -10,12 +10,12 @@ public class MobilePhone extends Product {
 
 	@Override
 	public void use() {
-		System.out.println("[MobilePhone: " + getOwner() + "]を使います");
+		System.out.println("[Mobile Phone: " + getOwner() + "]を使います");
 	}
 	
 	@Override
 	public String toString() {
-		return "[MobilePhone: " + getOwner() + "]";
+		return "[Mobile Phone: " + getOwner() + "]";
 	}
 
 }
