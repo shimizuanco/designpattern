@@ -1,6 +1,5 @@
 package com.hakotrain.designpattern.factorymethod;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.hakotrain.designpattern.factorymethod.concrete.IDCard;
@@ -34,14 +33,22 @@ public class Main {
 		Factory idCardFactory = new IDCardFactory();
 		Factory mobilePhoneFactory = new MobilePhoneFactory();
 		
-		Product[] arr = {
+//		Product[] arr = {
+//				idCardFactory.create("tanaka"),
+//				idCardFactory.create("田中"),
+//				mobilePhoneFactory.create("suzuki"),
+//				mobilePhoneFactory.create("鈴木")
+//		};
+//		List<Product> objects = Arrays.asList(arr);
+		
+		List<Product> objects = List.of(
 				idCardFactory.create("tanaka"),
 				idCardFactory.create("田中"),
 				mobilePhoneFactory.create("suzuki"),
 				mobilePhoneFactory.create("鈴木")
-		};
-		
-		return Arrays.asList(arr);
+		);
+
+		return objects;
 	}
 
 	// V2
@@ -59,13 +66,22 @@ public class Main {
 	private static List<Product> prepareObjectsV2() throws Exception {
 
 		FactoryV2 factory = new FactoryV2();
-		Product[] arr={
-			factory.create(IDCard.class, "tanaka"),
-			factory.create(IDCard.class, "田中"),
-			factory.create(MobilePhone.class, "suzuki"),
-			factory.create(MobilePhone.class, "鈴木")
-		};
-		return Arrays.asList(arr);
+//		Product[] arr={
+//			factory.create(IDCard.class, "tanaka"),
+//			factory.create(IDCard.class, "田中"),
+//			factory.create(MobilePhone.class, "suzuki"),
+//			factory.create(MobilePhone.class, "鈴木")
+//		};
+//		List<Product> objects = Arrays.asList(arr);
+		
+		List<Product> objects = List.of(
+				factory.create(IDCard.class, "tanaka"),
+				factory.create(IDCard.class, "田中"),
+				factory.create(MobilePhone.class, "suzuki"),
+				factory.create(MobilePhone.class, "鈴木")
+			);
+
+		return objects;
 	}
 
 }
