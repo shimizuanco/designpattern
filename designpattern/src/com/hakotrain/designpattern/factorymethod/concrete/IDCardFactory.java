@@ -12,12 +12,6 @@ public class IDCardFactory extends Factory {
 	}
 	
 	@Override
-	protected Product createProduct(Class<?> clazz, String name) throws Exception {
-		Product product = (Product) clazz.getDeclaredConstructor(String.class).newInstance(name);
-		return product;
-	}
-
-	@Override
 	protected void registerProduct(String name) {
 		System.out.println("IDCard: " + name + "を登録しました");
 

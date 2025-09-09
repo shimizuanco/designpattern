@@ -4,13 +4,18 @@ import com.hakotrain.designpattern.factorymethod.framework.Product;
 
 public class MobilePhone extends Product {
 
-	MobilePhone(String owner) {
+	public MobilePhone(String owner) {
 		super(owner);
 	}
 
 	@Override
 	public void use() {
 		System.out.println("[MobilePhone: " + getOwner() + "]を使います");
+	}
+	
+	@Override
+	public String toString() {
+		return "[MobilePhone: " + getOwner() + "]";
 	}
 
 }

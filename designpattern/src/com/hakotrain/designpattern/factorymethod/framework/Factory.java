@@ -7,18 +7,11 @@ public abstract class Factory {
 		registerProduct(name);
 		return product;
 	}
-	
-	// V2
-	public Product create(Class<?> clazz, String name) throws Exception {
-		Product product = createProduct(clazz, name);
-		registerProduct(name);
-		return product;
-	}
 
+	// V1
 	protected abstract Product createProduct(String name);
+
+	// Common
 	protected abstract void registerProduct(String name);
-	
-	// V2
-	protected abstract Product createProduct(Class<?> clazz, String name) throws Exception;
 
 }
