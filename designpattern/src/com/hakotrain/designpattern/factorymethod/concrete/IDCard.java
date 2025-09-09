@@ -3,7 +3,7 @@ package com.hakotrain.designpattern.factorymethod.concrete;
 import com.hakotrain.designpattern.factorymethod.framework.Product;
 
 public class IDCard extends Product {
-	public IDCard(String owner) {
+	IDCard(String owner) {
 		super(owner);
 	}
 	

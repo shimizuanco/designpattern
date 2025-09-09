@@ -4,7 +4,7 @@ import com.hakotrain.designpattern.factorymethod.framework.Product;
 
 public class MobilePhone extends Product {
 
-	public MobilePhone(String owner) {
+	MobilePhone(String owner) {
 		super(owner);
 	}
 
