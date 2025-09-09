@@ -1,5 +1,6 @@
 package com.hakotrain.designpattern.factorymethod;
 
+import java.time.Instant;
 import java.util.List;
 
 import com.hakotrain.designpattern.factorymethod.concrete.IDCard;
@@ -13,12 +14,22 @@ import com.hakotrain.designpattern.factorymethod.framework.Product;
 public class Main {
 	public static void main(String[] args) {
 		// V1
+		Instant startTime = Instant.now();
+		
 		run();
+		
+		Instant endTime = Instant.now();
+		printTime(startTime, endTime);		
 
 		System.out.println();
 		
 		// V2
+		Instant startTimeV2 = Instant.now();
+		
 		runV2();
+		
+		Instant endTimeV2 = Instant.now();
+		printTime(startTimeV2, endTimeV2);
 	}
 	
 	// V1
@@ -84,4 +95,10 @@ public class Main {
 		return objects;
 	}
 
+	private static void printTime(Instant start, Instant end) {
+		System.out.println("Start time  : " + start.toString());
+		System.out.println("End time    : " + end.toString());
+		System.out.println("Elapsed time: " + (end.toEpochMilli() - start.toEpochMilli()) + " ms");
+
+	}
 }
