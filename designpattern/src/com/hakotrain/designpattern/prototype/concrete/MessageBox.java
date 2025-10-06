@@ -9,6 +9,11 @@ public class MessageBox implements Product {
 		this.decochar = decochar;
 	}
 	
+	// コピーコンストラクタ
+	public MessageBox(MessageBox messageBox) {
+		this.decochar = messageBox.decochar;
+	}
+	
 	@Override
 	public void use(String s) {
 		int length = s.getBytes().length;
@@ -25,12 +30,14 @@ public class MessageBox implements Product {
 
 	@Override
 	public Product createClone() {
-		Product p = null;
-		try {
-			p = (Product)clone();
-		} catch(CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
+//		Product p = null;
+//		try {
+//			p = (Product)clone();
+//		} catch(CloneNotSupportedException e) {
+//			e.printStackTrace();
+//		}
+
+		Product p = new MessageBox(this);
 		return p;
 	}
 	

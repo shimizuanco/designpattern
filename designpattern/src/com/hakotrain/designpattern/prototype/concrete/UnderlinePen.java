@@ -8,6 +8,11 @@ public class UnderlinePen implements Product {
 	public UnderlinePen(char ulchar) {
 		this.ulchar = ulchar;
 	}
+	
+	// コピーコンストラクタ
+	public UnderlinePen(UnderlinePen underlinePen) {
+		this.ulchar = underlinePen.ulchar;
+	}
 
 	@Override
 	public void use(String name) {
@@ -22,14 +27,15 @@ public class UnderlinePen implements Product {
 
 	@Override
 	public Product createClone() {
-		Product p = null;
-		
-		try {
-			p = (Product)clone();
-		} catch(CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		
+//		Product p = null;
+//		
+//		try {
+//			p = (Product)clone();
+//		} catch(CloneNotSupportedException e) {
+//			e.printStackTrace();
+//		}
+
+		Product p = new UnderlinePen(this);
 		return p;
 	}
 
