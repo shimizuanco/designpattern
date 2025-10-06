@@ -26,7 +26,7 @@ public class Main {
 		p3.use("Hello, world.");
 		
 		Product p4 = manager.create("warning box");
-		p2.use("Good night, world.");
+		p4.use("Good night, world.");
 
 	}
 
